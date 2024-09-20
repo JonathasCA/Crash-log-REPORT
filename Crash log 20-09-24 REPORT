@@ -1,0 +1,144 @@
+CLA SSE - Sephs Skyrim Experimental Crash Log Analyzer (1.2.0) / 2023.09.10
+---------------------------------------------------------------------------
+If you are asking others for assistance / help, ALWAYS provide the crashlog as well!
+#####################################################################################
+
+Crashlog Tool: 		CrashLoggerSSE v1-10-0-0 Sep  5 2023 01:25:07
+Game Version:   	1.6.640
+Script Extender:	1.6.640
+
+
+################################################################################
+RAM
+################################################################################
+RAM Total:	15.92 GB
+RAM Used:	12.05 GB
+RAM Free:	3.87 GB
+
+Analysis RAM (all good):
+		It is absolute unlikely that the crash was due to RAM.
+
+
+
+################################################################################
+Mod Count:
+################################################################################
+	Light: 44	Regular: 144	Total: 188
+
+
+################################################################################
+Header indicators:
+################################################################################
+Memory:  		0x7FF7409DA330		count: (2)
+File:    		SkyrimSE.exe		count: (23)
+Address: 		141A330			count: (2)
+Assembler:		mov rax, [rdx+0x48]	count: (2)
+
+[0] 0x7FF7409DA330 SkyrimSE.exe+141A330 -> 107328+0x2A8	mov rax, [rdx+0x48] -//- count: (1)
+[RSP+0   ] 0x7FF7409D6426     (void* -> SkyrimSE.exe+1416426	mov rdx, [rbx+0xA8]) -//- count: (1)
+[RSP+20  ] 0x7FF73F730EBA     (void* -> SkyrimSE.exe+0170EBA	mov ebp, eax) -//- count: (1)
+[RSP+80  ] 0x7FF7409EDD3E     (void* -> SkyrimSE.exe+142DD3E	mov [0x00007FF742AEAF40], rbx) -//- count: (1)
+[RSP+160 ] 0x7FF7409EDB04     (void* -> SkyrimSE.exe+142DB04	mov rbx, [rbx+0x30]) -//- count: (1)
+[RSP+180 ] 0x7FF7409ED642     (void* -> SkyrimSE.exe+142D642	jmp 0x00007FF7409ED646) -//- count: (1)
+[RSP+1B0 ] 0x7FF7409AEFBE     (void* -> SkyrimSE.exe+13EEFBE	mov [rbx+0x140], al) -//- count: (1)
+[RSP+210 ] 0x7FF7409AD61E     (void* -> SkyrimSE.exe+13ED61E	cmp dword ptr [0x00007FF74145A5A0], 0x01) -//- count: (1)
+[RSP+260 ] 0x7FF7409ACC4D     (void* -> SkyrimSE.exe+13ECC4D	mov edx, edi) -//- count: (1)
+[RSP+290 ] 0x7FF7409C7C54     (void* -> SkyrimSE.exe+1407C54	mov rdx, [0x00007FF74288D800]) -//- count: (1)
+[RSP+320 ] 0x7FF74037811F     (void* -> SkyrimSE.exe+0DB811F	mov eax, eax) -//- count: (1)
+[RSP+400 ] 0x7FF73FBAB096     (void* -> SkyrimSE.exe+05EB096	mov rcx, [0x00007FF742581BC8]) -//- count: (1)
+[RSP+490 ] 0x7FF7425828C0     (void* -> SkyrimSE.exe+2FC28C0	add [rax], al) -//- count: (1)
+[RSP+4F0 ] 0x7FF73FBAA822     (void* -> SkyrimSE.exe+05EA822	nop) -//- count: (1)
+[RSP+520 ] 0x7FF73FE821FE     (void* -> SkyrimSE.exe+08C21FE	cmp [0x00007FF7425A7A08], eax) -//- count: (1)
+[RSP+550 ] 0x7FF73FBAA46D     (void* -> SkyrimSE.exe+05EA46D	cmp dword ptr [0x00007FF741517408], 0x02) -//- count: (1)
+[RSP+5E0 ] 0x7FF74099ED2F     (void* -> SkyrimSE.exe+13DED2F	movzx ecx, al) -//- count: (1)
+[RSP+620 ] 0x7FF73F726005     (void* -> SkyrimSE.exe+0166005	movaps xmm6, xmm0) -//- count: (1)
+[RSP+6F0 ] 0x7FF73FBACCD7     (void* -> SkyrimSE.exe+05ECCD7	test r15b, r15b) -//- count: (1)
+[RSP+890 ] 0x7FF73FBA4DD5     (void* -> SkyrimSE.exe+05E4DD5	test bl, bl) -//- count: (1)
+[RSP+920 ] 0x7FF740A34C1E     (void* -> SkyrimSE.exe+1474C1E	mov ebx, eax) -//- count: (1)
+SkyrimSE.exe                     0x7FF73F5C0000 -//- count: (1)
+
+
+
+################################################################################
+Solutions
+################################################################################
+
+SkyrimSE.exe: count: (23)
+	This file on its own is not the cause, however, we'll do further parsing...
+
+	Could not find any known issues related to SkyrimSE.exe.
+	SkyrimSE.exe _might_ be listed for the sole reason of... you're playing this game!!
+--------------------------------------------------------------------------------
+
+NiNode: count: (11)
+	Ninodes are related to skeletons. It could be a wrong loadorder for skeleton based mods.
+	If you use HDT/SMP, make sure to load it like: Body (CBBE or BH/UNP) -> FNIS/Nemesis -> DAR -> HDT -> XP32
+	Also make sure that you've chosen the HDT/SMP variant of xpmsse.
+	If you find a mod name in the following list, try disabling it and rerun FNIS or Nemesis.
+--------------------------------------------------------------------------------
+[RSP+610 ] 0x1F25E46D6C0      (NiNode*) count: (1)
+[RSP+608 ] 0x1F0F67E6E80      (ShadowSceneNode*) count: (1)
+RTTIName: "ShadowSceneNode" count: (1)
+Checking Parent: 1 count: (1)
+Name: "WorldRoot Node" count: (1)
+
+
+################################################################################
+Success Statistic: (this has been detected/handled, does not mean it's the cause)
+################################################################################
+Issues Found:	2
+Issues Solved:	2
+
+################################################################################
+DEBUG State:
+################################################################################
+Culprit list content: (just a list)
+SkyrimSE.exe, NiNode, 
+
+################################################################################
+Random 'Fallback' Checks
+################################################################################
+
+How to read these results?
+- They are simple keywords that may appear when you have a lot of issues.
+- They do NOT have to mean anything.
+- Only if the "regular" results / solutions do not help, they might provide an indication to the reason for this crash.
+
+
+File: "aaaGraniteHill.esp" -//- count: (6)
+
+
+Name: "FemaleHeadImperial" -//- count: (2)
+RTTIName: "BSDynamicTriShape" -//- count: (1)
+ExtraData[0] Name: "FOD" -//- count: (1)
+ExtraData[1] Name: "FMD" -//- count: (1)
+Full Name: "Tulia" -//- count: (3)
+Name: "Tulia" -//- count: (9)
+Name: "BSFaceGenNiNodeSkinned" -//- count: (1)
+RTTIName: "BSFaceGenNiNode" -//- count: (1)
+Name: "skeleton_female.nif" -//- count: (1)
+RTTIName: "BSFadeNode" -//- count: (1)
+ExtraData[0] Name: "BSBoneLOD" -//- count: (1)
+ExtraData[1] Name: "BOM" -//- count: (1)
+ExtraData[2] Name: "BBX" -//- count: (1)
+ExtraData[3] Name: "BSX" -//- count: (1)
+ExtraData[4] Name: "SkeletonID" -//- count: (1)
+RTTIName: "NiNode" -//- count: (8)
+RTTIName: "BSMultiBoundNode" -//- count: (2)
+Name: "ObjectLODRoot" -//- count: (2)
+Name: "shadow scene node" -//- count: (4)
+RTTIName: "ShadowSceneNode" -//- count: (3)
+Name: "WorldRoot Node" -//- count: (7)
+RTTIName: "SceneGraph" -//- count: (7)
+Name: "WorldRoot Camera" -//- count: (8)
+RTTIName: "NiCamera" -//- count: (7)
+Name: "WorldRoot CameraNode" -//- count: (4)
+
+
+FormID: 0x2900E164 -//- count: (6)
+
+
+[ 6]     ccBGSSSE001-Fish.esm -//- count: (1)
+[ C]     ccBGSSSE025-AdvDSGS.esm -//- count: (1)
+[FE: 16] ccBGSSSE037-Curios.esl -//- count: (1)
+
